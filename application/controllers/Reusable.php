@@ -70,10 +70,16 @@ class Reusable
      * @param       string|array  $data
      * @return      bool
      */
-    public static function mandatory($data)
+    public static function is_empty($data)
     {
-        if ($data === "") return FALSE;
-        else if (is_null($data)) return FALSE;
+        if (is_null($data) OR $data === "") return TRUE;
+        return FALSE;
+    }
+    public static function validate($data,$is_numeric = FALSE,$is_array = FALSE)
+    {
+        if (self::is_empty($data)) return FALSE;
+        if ($is_numeric && ! is_numeric($data)) return FALSE;
+        if ($is_array && ! is_array($data) && sizeof($data) <= 0) return FALSE;
         return TRUE;
     }
 
