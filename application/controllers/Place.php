@@ -72,13 +72,11 @@ class Place extends REST_Controller {
         $lat = $this->input->post('lat');
         $lng = $this->input->post('lng');
         $price = $this->input->post('price');
-        $per = $this->input->post('per');
         $max = $this->input->post('max');
 
         if (! $this->reusable->validate($lat) OR
             ! $this->reusable->validate($lng) OR
             ! $this->reusable->validate($price,TRUE,FALSE) OR
-            ! $this->reusable->validate($per) OR
             ! $this->reusable->validate($max,TRUE,FALSE)) {
 
             //  give response invalid
@@ -97,7 +95,6 @@ class Place extends REST_Controller {
                 'park_lat' => $lat,
                 'park_lng' => $lng,
                 'park_price' => $price,
-                'park_per' => $per,
                 'park_max' => $max,
                 'park_is_active' => TRUE,
                 'park_created' => $this->date_time,
@@ -123,7 +120,6 @@ class Place extends REST_Controller {
         $lng2 = $this->input->post('lng2');
         $price1 = $this->input->post('price1');
         $price2 = $this->input->post('price2');
-        $per = $this->input->post('per');
         $max1 = $this->input->post('max1');
         $max2 = $this->input->post('max2');
         $order = $this->input->post('order');
@@ -145,7 +141,6 @@ class Place extends REST_Controller {
             $price1 = NULL;
             $price2 = NULL;
         }
-        if (! $this->reusable->validate($per)) $per = NULL;
         if (! $this->reusable->validate($max1,TRUE,FALSE) OR
             ! $this->reusable->validate($max2,TRUE,FALSE)) {
             $max1 = NULL;
@@ -154,7 +149,7 @@ class Place extends REST_Controller {
         if (! $this->reusable->validate($order,FALSE,TRUE)) $order = NULL;
         if (! $this->reusable->validate($limit,TRUE,FALSE)) $limit = NULL;
 
-        $data = $this->Model_place->select($user,$id,$lat1,$lng1,$lat2,$lng2,$price1,$price2,$per,$max1,$max2,$order,$limit);
+        $data = $this->Model_place->select($user,$id,$lat1,$lng1,$lat2,$lng2,$price1,$price2,$max1,$max2,$order,$limit);
         if( ! is_null($data)) {
 
             //  give response ok
@@ -180,14 +175,12 @@ class Place extends REST_Controller {
         $lat = $this->input->post('lat');
         $lng = $this->input->post('lng');
         $price = $this->input->post('price');
-        $per = $this->input->post('per');
         $max = $this->input->post('max');
 
         if (! $this->reusable->validate($id,TRUE,FALSE) OR
             ! $this->reusable->validate($lat) OR
             ! $this->reusable->validate($lng) OR
             ! $this->reusable->validate($price,TRUE,FALSE) OR
-            ! $this->reusable->validate($per) OR
             ! $this->reusable->validate($max,TRUE,FALSE)) {
 
             //  give response invalid
@@ -204,7 +197,6 @@ class Place extends REST_Controller {
                 'park_lat' => $lat,
                 'park_lng' => $lng,
                 'park_price' => $price,
-                'park_per' => $per,
                 'park_max' => $max,
                 'park_lastmodified' => $this->date_time
             );

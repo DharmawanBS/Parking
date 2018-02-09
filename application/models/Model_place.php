@@ -8,7 +8,7 @@
 
 class Model_place extends CI_Model
 {
-    function select($user = NULL,$id = NULL,$lat1 = NULL,$lng1 = NULL,$lat2 = NULL,$lng2 = NULL,$price1 = NULL,$price2 = NULL,$per = NULL,$max1 = NULL,$max2 = NULL,$order = NULL,$limit = NULL) {
+    function select($user = NULL,$id = NULL,$lat1 = NULL,$lng1 = NULL,$lat2 = NULL,$lng2 = NULL,$price1 = NULL,$price2 = NULL,$max1 = NULL,$max2 = NULL,$order = NULL,$limit = NULL) {
         $this->db->select('user.user_name,
                            park.*');
         if ( ! is_null($user)) {
@@ -27,7 +27,6 @@ class Model_place extends CI_Model
             $this->db->where('park.park_price >=',$price1);
             $this->db->where('park.park_price <=',$price2);
         }
-        $this->db->where('park.park_per',$per);
         if ( ! is_null($max1) AND ! is_null($max2) ) {
             $this->db->where('park.park_max >=',$max1);
             $this->db->where('park.park_max <=',$max2);
